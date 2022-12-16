@@ -1,4 +1,3 @@
-import "./App.css";
 import { Switch, Route, Redirect } from "react-router-dom";
 import ImagesPage from "./pages/ImagesPage";
 import RegisterPage from "./pages/RegisterPage";

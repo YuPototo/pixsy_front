@@ -9,7 +9,7 @@ type Props = {
 
 export default function BaseLayout({ children, activeSideBar }: Props) {
     return (
-        <div className="bg-gray-100 h-screen flex">
+        <div className="bg-gray-100 min-h-screen flex">
             <SideBar activeItem={activeSideBar} />
             <div className="flex-grow">{children}</div>
         </div>
