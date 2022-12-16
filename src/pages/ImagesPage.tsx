@@ -21,7 +21,7 @@ export default function ImagePage() {
 
     const dispatch = useAppDispatch();
 
-    const { data, isLoading } = useGetPhotosQuery({
+    const { data, isFetching } = useGetPhotosQuery({
         topic,
         searchTerm,
         page,
@@ -47,9 +47,9 @@ export default function ImagePage() {
 
             {searchTerm && <SearchInfo />}
 
-            <PhotoGrid photos={photos} isLoading={isLoading} />
+            <PhotoGrid photos={photos} isLoading={isFetching} />
 
-            {!isLoading && photos && photos.length === 0 && (
+            {!isFetching && photos && photos.length === 0 && (
                 <div className="text-lg text-center text-red-500">
                     No photos found.
                 </div>
