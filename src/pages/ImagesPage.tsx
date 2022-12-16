@@ -13,10 +13,7 @@ export default function ImagePage() {
     const topic = useAppSelector((state) => state.photoList.topic);
     const searchTerm = useAppSelector((state) => state.photoList.searchTerm);
 
-    // pagination is not implemented.
-    // let limit = 100 to get all photos
     const { data: photos, isLoading } = useGetPhotosQuery({
-        limit: 100,
         topic,
         searchTerm,
     });
@@ -37,49 +34,34 @@ export default function ImagePage() {
                 </div>
             )}
 
+            {searchTerm && <SearchInfo />}
+
             <PhotoGrid photos={photos} isLoading={isLoading} />
 
             {!isLoading && photos && photos.length === 0 && (
-                <NoPhotosHint topic={topic} searchTerm={searchTerm} />
+                <div className="text-lg text-center text-red-500">
+                    No photos found.
+                </div>
             )}
         </div>
     );
 }
 
-function NoPhotosHint({
-    topic,
-    searchTerm,
-}: {
-    topic?: string;
-    searchTerm?: string;
-}) {
+function SearchInfo() {
     const dispatch = useAppDispatch();
+    const searchTerm = useAppSelector((state) => state.photoList.searchTerm);
 
     return (
-        <div className="flex flex-col gap-2 items-center">
-            <div className="text-lg text-center text-red-500">
-                No photos found.
+        <div className="text-center font-sm text-gray-600 mt-6 mb-6 flex items-center gap-4 justify-center">
+            <div>
+                Search Term: <span className="font-bold">{searchTerm}</span>
             </div>
-            {topic && (
-                <div className="text-center">
-                    Topic:{" "}
-                    <span className="text-primary text-bold">{topic}</span>
-                </div>
-            )}
-            {searchTerm && (
-                <div className="text-center">
-                    Search Keywords:{" "}
-                    <span className="text-primary text-bold">{searchTerm}</span>
-                </div>
-            )}
-            <div className="mt-4">
-                <button
-                    className="border-2 px-4 py-2 text-primary font-bold uppercase border-primary bg-white"
-                    onClick={() => dispatch(searchTermEntered(""))}
-                >
-                    Clear Search
-                </button>
-            </div>
+            <button
+                className="border px-2 py-1 text-primary border-primary "
+                onClick={() => dispatch(searchTermEntered(""))}
+            >
+                Clear Search
+            </button>
         </div>
     );
 }
