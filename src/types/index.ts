@@ -6,3 +6,10 @@ export interface IPhoto {
     topics: string[];
     user: string;
 }
+
+export type ISideBarItem =
+    | "matches"
+    | "images"
+    | "cases"
+    | "takedowns"
+    | "register";

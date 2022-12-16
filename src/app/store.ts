@@ -1,6 +1,6 @@
 import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
-import photoListRuducer from "../features/photoList/photoListSlice";
-import { api } from "../api";
+import photoListRuducer from "./photoListSlice";
+import { api } from "./api";
 
 export const store = configureStore({
     reducer: {
