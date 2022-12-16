@@ -15,11 +15,11 @@ type Props = {
 
 export default function SideBar({ activeItem }: Props) {
     return (
-        <div className="h-screen border-r-2 border-white w-40 flex flex-col  items-center gap-10 pt-4">
+        <div className="h-screen border-r-2 border-white flex flex-col  items-center gap-10 pt-4">
             <Link to="/">
                 <img className="w-24" src="./Brand.webp" alt="brand"></img>
             </Link>
-            <div className="flex flex-col gap-6">
+            <div className="flex flex-col gap-2">
                 <SideBarItem
                     title="MATCHES"
                     isSelected={activeItem === "matches"}

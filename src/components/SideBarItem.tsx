@@ -16,11 +16,12 @@ export default function SideBarItem({
         <Link
             to={`/${title.toLowerCase()}`}
             className={clsx(
-                "flex flex-col gap-2 items-center",
-                isSelected ? "text-primary" : "text-gray-400"
+                "flex flex-col gap-2 items-center w-full p-2",
+                isSelected ? "text-primary" : "text-gray-400",
+                "hover:text-primary"
             )}
         >
-            <div className="w-10 h-10 ">{children}</div>
+            <div className="w-10 h-10">{children}</div>
             <div className="font-semibold">{title}</div>
         </Link>
     );
