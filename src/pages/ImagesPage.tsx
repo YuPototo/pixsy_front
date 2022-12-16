@@ -55,7 +55,7 @@ export default function ImagePage() {
                 </div>
             )}
 
-            {data && (
+            {photos && photos.length > 0 && (
                 <Pager
                     hasNextPage={hasNextPage!}
                     hasPreviousPage={hasPreviousPage!}

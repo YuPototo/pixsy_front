@@ -17,12 +17,15 @@ export const photoListSlice = createSlice({
     reducers: {
         searchTermEntered: (state, { payload }: PayloadAction<string>) => {
             state.searchTerm = payload;
+            state.page = 1;
         },
         topicSelected: (state, { payload }: PayloadAction<string>) => {
             if (state.topic === payload) {
                 state.topic = undefined;
+                state.page = 1;
             } else {
                 state.topic = payload;
+                state.page = 1;
             }
         },
         toNextPage: (state) => {
