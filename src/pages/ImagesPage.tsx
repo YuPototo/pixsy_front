@@ -27,6 +27,16 @@ export default function ImagePage() {
         page,
     });
 
+    const handleToNextPage = () => {
+        dispatch(toNextPage());
+        window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+    };
+
+    const handleToPrevPage = () => {
+        dispatch(toPrevPage());
+        window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+    };
+
     const { photos, hasPreviousPage, hasNextPage } = data || {};
 
     return (
@@ -60,8 +70,8 @@ export default function ImagePage() {
                     hasNextPage={hasNextPage!}
                     hasPreviousPage={hasPreviousPage!}
                     pageNumber={page}
-                    onToNextPage={() => dispatch(toNextPage())}
-                    onToPreviousPage={() => dispatch(toPrevPage())}
+                    onToNextPage={handleToNextPage}
+                    onToPreviousPage={handleToPrevPage}
                 />
             )}
         </div>
