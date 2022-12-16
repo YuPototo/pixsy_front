@@ -65,7 +65,7 @@ export default function ImagePage() {
                 </div>
             )}
 
-            {photos && photos.length > 0 && (
+            {!isFetching && photos && photos.length > 0 && (
                 <Pager
                     hasNextPage={hasNextPage!}
                     hasPreviousPage={hasPreviousPage!}

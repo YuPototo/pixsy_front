@@ -14,7 +14,8 @@ export default function PhotoGrid({ photos, isLoading }: Props) {
                 [1, 2, 3, 4, 5, 6, 7, 8, 9].map((i) => (
                     <PhotoCardSkeleton key={i} />
                 ))}
-            {photos &&
+            {!isLoading &&
+                photos &&
                 photos.map((photo) => (
                     <PhotoCard key={photo.id} photo={photo}></PhotoCard>
                 ))}
