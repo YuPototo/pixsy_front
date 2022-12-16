@@ -4,9 +4,10 @@ import React from "react";
 type Props = {
     topic: string;
     isSelected?: boolean;
+    onClick: (topic: string) => void;
 };
 
-export default function TopicPill({ topic, isSelected }: Props) {
+export default function TopicPill({ topic, isSelected, onClick }: Props) {
     return (
         <div
             className={clsx(
@@ -14,6 +15,7 @@ export default function TopicPill({ topic, isSelected }: Props) {
                 isSelected ? "bg-primary" : "bg-white",
                 isSelected ? "text-white" : "text-gray-500"
             )}
+            onClick={() => onClick(topic)}
         >
             {topic}
         </div>
