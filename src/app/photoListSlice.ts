@@ -3,9 +3,12 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 export interface PhotoListState {
     topic?: string;
     searchTerm?: string;
+    page: number;
 }
 
-const initialState: PhotoListState = {};
+const initialState: PhotoListState = {
+    page: 1,
+};
 
 export const photoListSlice = createSlice({
     name: "photos",
@@ -22,9 +25,16 @@ export const photoListSlice = createSlice({
                 state.topic = payload;
             }
         },
+        toNextPage: (state) => {
+            state.page += 1;
+        },
+        toPrevPage: (state) => {
+            state.page -= 1;
+        },
     },
 });
 
-export const { searchTermEntered, topicSelected } = photoListSlice.actions;
+export const { searchTermEntered, topicSelected, toNextPage, toPrevPage } =
+    photoListSlice.actions;
 
 export default photoListSlice.reducer;

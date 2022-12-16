@@ -5,21 +5,32 @@ import TopNav from "../components/TopNav";
 import TopSubNav from "../components/TopSubNav";
 import { useGetPhotosQuery } from "../app/api";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
-import { searchTermEntered } from "../app/photoListSlice";
+import {
+    searchTermEntered,
+    toNextPage,
+    toPrevPage,
+} from "../app/photoListSlice";
+import Pager from "../components/Pager";
 
 export default function ImagePage() {
     const [showTopicSelector, setShowTopicSelector] = useState(false);
 
     const topic = useAppSelector((state) => state.photoList.topic);
     const searchTerm = useAppSelector((state) => state.photoList.searchTerm);
+    const page = useAppSelector((state) => state.photoList.page);
 
-    const { data: photos, isLoading } = useGetPhotosQuery({
+    const dispatch = useAppDispatch();
+
+    const { data, isLoading } = useGetPhotosQuery({
         topic,
         searchTerm,
+        page,
     });
 
+    const { photos, hasPreviousPage, hasNextPage } = data || {};
+
     return (
-        <div className="">
+        <div className="pb-16">
             <TopNav />
             <TopSubNav selectedItem="all" />
 
@@ -42,6 +53,16 @@ export default function ImagePage() {
                 <div className="text-lg text-center text-red-500">
                     No photos found.
                 </div>
+            )}
+
+            {data && (
+                <Pager
+                    hasNextPage={hasNextPage!}
+                    hasPreviousPage={hasPreviousPage!}
+                    pageNumber={page}
+                    onToNextPage={() => dispatch(toNextPage())}
+                    onToPreviousPage={() => dispatch(toPrevPage())}
+                />
             )}
         </div>
     );
